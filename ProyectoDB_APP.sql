@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS publicaciones (
   id_publicacion INT PRIMARY KEY AUTO_INCREMENT,
   id_usuario INT,
   tipo_publicacion VARCHAR(20),
-  fecha_publicacion DATE,
+  fecha_publicacion VARCHAR(20),
   interaccion VARCHAR(20),
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 ALTER TABLE usuarios
 ADD CONSTRAINT fk_publicaciones_id
 FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion);
+
 
 
 
