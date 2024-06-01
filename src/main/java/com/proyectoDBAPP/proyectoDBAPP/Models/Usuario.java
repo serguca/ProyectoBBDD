@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario{
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
@@ -21,6 +21,7 @@ public class Usuario{
 
     private ArrayList<Publicacion> publicaciones;
     private ArrayList<Usuario> seguidores;
+
     
     public int getId_usuario() {
         return id_usuario;
@@ -81,5 +82,17 @@ public class Usuario{
         this.seguidores.remove(usuario);
     }
 
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id_usuario=" + id_usuario +
+                ", nombre='" + nombre + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", publicaciones=" + publicaciones +
+                ", seguidores=" + seguidores +
+                '}';
+    }
 }
