@@ -35,6 +35,7 @@ public class UsuariosController {
         return usuarioRepository.save(usuario);
     }
 
+    @PutMapping("/{id}")
     public Usuario updateUsuario(int id, Usuario usuario){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
