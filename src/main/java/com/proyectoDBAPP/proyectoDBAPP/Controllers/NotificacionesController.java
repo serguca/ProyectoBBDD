@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoDBAPP.proyectoDBAPP.Models.Notificacion;
-import com.proyectoDBAPP.proyectoDBAPP.Models.Publicacion;
-import com.proyectoDBAPP.proyectoDBAPP.Models.Usuario;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.NotificacionesRepository;
 
 
@@ -23,6 +21,11 @@ import com.proyectoDBAPP.proyectoDBAPP.Repositories.NotificacionesRepository;
 public class NotificacionesController {
     @Autowired
     private NotificacionesRepository notificacionesRepository;
+    
+    @GetMapping("/") 
+public String prueba(){
+    return "PRUEBA";
+}
 
     @GetMapping
     public List<Notificacion> getAllNotificaciones(){
