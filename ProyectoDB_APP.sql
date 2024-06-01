@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 ALTER TABLE usuarios
 ADD CONSTRAINT fk_publicaciones_id
 FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion);
-
+FOREIGN KEY (seguidores) REFERENCES seguidores(id_seguidor);
 
 
 
