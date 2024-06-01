@@ -1,6 +1,8 @@
 package com.proyectoDBAPP.proyectoDBAPP.Controllers;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,40 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyectoDBAPP.proyectoDBAPP.Models.Notificacion;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.NotificacionesRepository;
 
-
 @RestController
 @RequestMapping("/notificaciones")
 public class NotificacionesController {
+
     @Autowired
     private NotificacionesRepository notificacionesRepository;
     
-    @GetMapping("/") 
-public String prueba(){
-    return "PRUEBA";
-}
+    @GetMapping("/prueba")
+    public String prueba() {
+        return "PRUEBA";
+    }
 
     @GetMapping
-    public List<Notificacion> getAllNotificaciones(){
+    public List<Notificacion> getAllNotificaciones() {
         return notificacionesRepository.findAll();
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<Notificacion> getNotificacionById(@PathVariable int id){
+    public ResponseEntity<Notificacion> getNotificacionById(@PathVariable int id) {
         Optional<Notificacion> notificacion = notificacionesRepository.findById(id);
         return notificacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Notificacion createNotificacion(@RequestBody Notificacion notificacion){
+    public Notificacion createNotificacion(@RequestBody Notificacion notificacion) {
         return notificacionesRepository.save(notificacion);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Notificacion> modificarNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion){
+    public ResponseEntity<Notificacion> modificarNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion) {
         Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
         if (optionalNotificacion.isPresent()) {
             Notificacion notificacionModificada = optionalNotificacion.get();
-
             notificacionModificada.setTipo_notificacion(notificacion.getTipo_notificacion());
             notificacionModificada.setFecha_notificacion(notificacion.getFecha_notificacion());
 
@@ -60,7 +61,7 @@ public String prueba(){
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNotificacion(@PathVariable int id){
+    public ResponseEntity<Void> deleteNotificacion(@PathVariable int id) {
         Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
         if (optionalNotificacion.isPresent()) {
             notificacionesRepository.deleteById(id);
@@ -70,4 +71,3 @@ public String prueba(){
         }
     }
 }
-
