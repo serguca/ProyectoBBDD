@@ -46,40 +46,6 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 -- Alterar tabla usuarios para añadir la clave foránea hacia publicaciones
 ALTER TABLE usuarios
 ADD CONSTRAINT fk_publicaciones_id
-FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion);
-FOREIGN KEY (seguidores) REFERENCES seguidores(id_seguidor);
-
-
-
--- Insertar datos en la tabla usuarios
-INSERT INTO usuarios (nombre, apellido, correo, contrasenia, telefono, imagen, publicaciones, seguidores) VALUES
-('Juan', 'Pérez', 'juan.perez@example.com', 'password123', '1234567890', 'juan.png', '1,2', '2,3'),
-('María', 'García', 'maria.garcia@example.com', 'password456', '0987654321', 'maria.png', '3,4', '1'),
-('Carlos', 'Ramírez', 'carlos.ramirez@example.com', 'password789', '1122334455', 'carlos.png', '5', '1,3'),
-('Ana', 'López', 'ana.lopez@example.com', 'password321', '5566778899', 'ana.png', '', '2,4');
-
--- Insertar datos en la tabla publicaciones
-INSERT INTO publicaciones (id_usuario, tipo_publicacion, fecha_publicacion, interaccion) VALUES
-(1, 'foto', '2024-05-01', 'like'),
-(1, 'video', '2024-05-02', 'comentario'),
-(2, 'estado', '2024-05-03', 'compartir'),
-(2, 'foto', '2024-05-04', 'like'),
-(3, 'video', '2024-05-05', 'comentario');
-
--- Insertar datos en la tabla seguidores
-INSERT INTO seguidores (id_usuario, id_seguidor) VALUES
-(1, 2),
-(1, 3),
-(2, 1),
-(3, 1),
-(3, 2),
-(4, 1),
-(4, 2);
-
--- Insertar datos en la tabla notificaciones
-INSERT INTO notificaciones (id_usuario, tipo_notificacion, fecha_notificacion) VALUES
-(1, 'comentario', '2024-05-01'),
-(1, 'like', '2024-05-02'),
-(2, 'compartir', '2024-05-03'),
-(2, 'comentario', '2024-05-04'),
-(3, 'like', '2024-05-05');
+FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion),
+ADD CONSTRAINT fk_seguidores_id
+FOREIGN KEY (seguidores) REFERENCES seguidores(id_seguidor)
