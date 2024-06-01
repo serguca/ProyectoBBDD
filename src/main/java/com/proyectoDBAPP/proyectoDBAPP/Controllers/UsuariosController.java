@@ -23,7 +23,15 @@ public class UsuariosController {
     public List<Usuario> getAllUsuarios(){
         return usuarioRepository.findAll();
     }
-    
+
+    @GetMapping("/{id}/seguidores")
+    public List<Usuario> getSeguidores(@PathVariable int id) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        Usuario usuario = usuarioOptional.orElseThrow(() -> new IllegalArgumentException("El usuario con el id: " + id + " no existe"));
+        return usuario.getSeguidores();
+    }
+
+
     @GetMapping("/{id}")    //Este id es el que recive el metodo
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable int id){ // Queremos que sea igual a este id para que se pueda hacer la busqueda
       Optional <Usuario> usuario = usuarioRepository.findById(id);//@PathVariable INDICA QUE  EL ID DE ARRIBA ES EL MISMO QUE EL DE ABAJO Y ENTRA POR LA RUTA

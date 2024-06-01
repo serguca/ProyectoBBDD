@@ -1,11 +1,15 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 @Table(name = "usuarios")
@@ -20,7 +24,8 @@ public class Usuario {
     private String imagen;
 
     private ArrayList<Publicacion> publicaciones;
-    private ArrayList<Usuario> seguidores;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Usuario> seguidores;
 
     
     public int getId_usuario() {
@@ -66,7 +71,7 @@ public class Usuario {
     public void setPublicaciones(ArrayList<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
     }
-    public ArrayList<Usuario> getSeguidores() {
+    public List<Usuario> getSeguidores() {
         return seguidores;
     }
     public void setSeguidores(ArrayList<Usuario> seguidores) {
