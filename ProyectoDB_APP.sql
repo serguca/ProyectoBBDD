@@ -30,8 +30,7 @@ CREATE TABLE IF NOT EXISTS seguidores (
   id_usuario INT,
   id_seguidor INT,
   PRIMARY KEY (id_usuario, id_seguidor),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-  FOREIGN KEY (id_seguidor) REFERENCES usuarios(id_usuario)
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
 -- Crear tabla notificaciones con clave foránea hacia usuarios
