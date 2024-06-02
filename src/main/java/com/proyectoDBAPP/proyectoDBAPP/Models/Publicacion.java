@@ -2,11 +2,14 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "posts")
@@ -14,9 +17,18 @@ public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_publicacion;
-    private int id_usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @Column(nullable = false,length = 20)
     private String tipo_Publicacion;
+
+    @Column(nullable = false,length = 20)
     private String fecha_Publicacion;
+
+    @Column(nullable = false,length = 20)
     private String interaccion;
 
     public int getId_publicacion() {
@@ -25,14 +37,6 @@ public class Publicacion {
 
     public void setId_publicacion(int id_publicacion) {
         this.id_publicacion = id_publicacion;
-    }
-
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
     }
 
     public String getTipo_Publicacion() {
