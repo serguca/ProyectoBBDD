@@ -83,15 +83,15 @@ public class UsuariosController {
     }
 
 
-    /*
-    @PutMapping("/{id}/dejarDeSeguir")
-    public void dejarDeSeguirUsuario(@PathVariable int id, @RequestBody Usuario seguidor){
-       Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-       Usuario usuario = usuarioOptional.get();
-        usuario.dejarDeSeguirUsuario(seguidor);
+    @DeleteMapping("/{id1}/dejarDeSeguir/{id2}")
+    public void dejarDeSeguirUsuario(@PathVariable int id1, @PathVariable int id2){
+        List<Seguidor> seguidores = seguidoresRepository.findAll();
+        for(Seguidor seguidor : seguidores){
+            if(seguidor.getSeguidor().getId() == id1 && seguidor.getSeguido().getId() == id2){
+                seguidoresRepository.delete(seguidor);
+            }
+        }
     }
     
-     */
-
 
 }
