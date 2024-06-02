@@ -44,25 +44,8 @@ public class PublicacionesController {
         publicacion.setUsuario(usuarioRepository.findById(id).get());
         return publicacionesRepository.save(publicacion);
     }
-
-    @PutMapping("/modificar/{id}")
-    public ResponseEntity<Publicacion> modificarPublicacion(@PathVariable int id, @RequestBody Publicacion publicacion){
-    Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
-    if (optionalPublicacion.isPresent()) {
-        Publicacion publicacionActualizada = optionalPublicacion.get();
-        
-        publicacionActualizada.setTipo_publicacion(publicacion.getTipo_publicacion());
-        publicacionActualizada.setFecha_publicacion(publicacion.getFecha_publicacion());
-        publicacionActualizada.setInteraccion(publicacion.getInteraccion());
-
-        Publicacion updatedPublicacion = publicacionesRepository.save(publicacionActualizada);
-        return ResponseEntity.ok(updatedPublicacion);
-    } else {
-        return ResponseEntity.notFound().build();
-    }
-    }
     
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/{id}/eliminar")
     public void deletePublicacion(@PathVariable int id){
         Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
         if(optionalPublicacion.isPresent()){

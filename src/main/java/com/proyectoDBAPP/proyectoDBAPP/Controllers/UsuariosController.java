@@ -71,20 +71,6 @@ public class UsuariosController {
     public void deleteUsuario(@PathVariable int id){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
-            /* 
-            List<Publicacion> publicaciones = publicacionesRepository.findAll();
-            for (Publicacion publicacion : publicaciones) {
-                if (publicacion.getUsuario().getId() == id) {
-                    publicacionesRepository.delete(publicacion);
-                }
-            }
-            List<Seguidor> seguidores = seguidoresRepository.findAll();
-            for (Seguidor seguidor : seguidores) {
-                if (seguidor.getSeguidor().getId() == id || seguidor.getSeguido().getId() == id) {
-                    seguidoresRepository.delete(seguidor);
-                }
-            }
-             */
             usuarioRepository.delete(usuarioOptional.get());
         } else {
             throw new IllegalArgumentException("El usuario con el id: " + id + " no existe");

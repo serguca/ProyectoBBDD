@@ -50,28 +50,4 @@ public class NotificacionesController {
         return notificacionesRepository.save(notificacion);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Notificacion> modificarNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion) {
-        Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
-        if (optionalNotificacion.isPresent()) {
-            Notificacion notificacionModificada = optionalNotificacion.get();
-            notificacionModificada.setFecha_notificacion(notificacion.getFecha_notificacion());
-
-            Notificacion updatedNotificacion = notificacionesRepository.save(notificacionModificada);
-            return ResponseEntity.ok(updatedNotificacion);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNotificacion(@PathVariable int id) {
-        Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
-        if (optionalNotificacion.isPresent()) {
-            notificacionesRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }
