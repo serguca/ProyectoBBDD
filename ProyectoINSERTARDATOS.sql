@@ -5,6 +5,6 @@ INSERT INTO usuarios (nombre, apellido, correo, contrasenia, telefono, imagen) V
 ('Ana', 'López', 'ana.lopez@example.com', 'password321', '5566778899', 'ana.png');
 
 INSERT INTO seguidores (id_usuario, id_seguidor) VALUES
-(5, 6),
-(5, 7),
-(5, 8);
+(1, 2),
+(4, 3),
+(2, 1);
