@@ -1,40 +1,37 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "notifications")
 public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private int id_notificacion;
-    private int id_usuario;
-    private String tipo_notificacion;
+
+    @Column(name = "fecha_notificacion", nullable = false, updatable = false)
     private String fecha_notificacion;
     
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     public int getId_notificacion() {
         return id_notificacion;
     }
     public void setId_notificacion(int id_notificacion) {
         this.id_notificacion = id_notificacion;
     }
-    public int getId_usuario() {
-        return id_usuario;
-    }
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-    public String getTipo_notificacion() {
-        return tipo_notificacion;
-    }
-    public void setTipo_notificacion(String tipo_notificacion) {
-        this.tipo_notificacion = tipo_notificacion;
-    }
+
     public String getFecha_notificacion() {
         return fecha_notificacion;
     }

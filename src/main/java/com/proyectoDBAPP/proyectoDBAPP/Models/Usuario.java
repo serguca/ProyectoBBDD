@@ -1,6 +1,7 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 import java.util.ArrayList;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
@@ -10,23 +11,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
+
+    @Column(nullable = false,length = 50)
     private String nombre;
-    private String contrasenia;
+
+    @Column(nullable = false,length = 30)
+    private String apellido;
+
+    @Column(nullable = false,length = 30)
     private String correo;
+
+    @Column(nullable = false,length = 30)
+    private String contrasenia;
+
+    @Column(nullable = false,length = 30)
     private String telefono;
+
+    @Column(nullable = false,length = 40)
     private String imagen;
-
-    private ArrayList<Publicacion> publicaciones;
-    private ArrayList<Usuario> seguidores;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
 
     public int getId_usuario() {
         return id_usuario;
@@ -64,6 +71,8 @@ public class Usuario {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    /*
     public ArrayList<Publicacion> getPublicaciones() {
         return publicaciones;
     }
@@ -86,6 +95,7 @@ public class Usuario {
     public void dejarDeSeguirUsuario(Usuario usuario){
         this.seguidores.remove(usuario);
     }
+     */
 
     @Override
     public String toString() {
@@ -96,8 +106,6 @@ public class Usuario {
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", imagen='" + imagen + '\'' +
-                ", publicaciones=" + publicaciones +
-                ", seguidores=" + seguidores +
                 '}';
     }
 }

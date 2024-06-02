@@ -65,7 +65,7 @@ public class UsuariosController {
         }
     }
     
-
+    /*
     @PutMapping("/{id}/seguir")
     public void seguirUsuario(@PathVariable int id, @RequestBody Usuario seguidor){
        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
@@ -79,7 +79,7 @@ public class UsuariosController {
        Usuario usuario = usuarioOptional.get();
         usuario.dejarDeSeguirUsuario(seguidor);
     }
-
+     */
 
 
 }

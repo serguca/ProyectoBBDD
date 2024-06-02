@@ -50,7 +50,6 @@ public class NotificacionesController {
         Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
         if (optionalNotificacion.isPresent()) {
             Notificacion notificacionModificada = optionalNotificacion.get();
-            notificacionModificada.setTipo_notificacion(notificacion.getTipo_notificacion());
             notificacionModificada.setFecha_notificacion(notificacion.getFecha_notificacion());
 
             Notificacion updatedNotificacion = notificacionesRepository.save(notificacionModificada);
