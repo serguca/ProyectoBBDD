@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   correo VARCHAR(30),
   contrasenia VARCHAR(30),
   telefono VARCHAR(30),
-  imagen VARCHAR(40),
+  imagen VARCHAR(40)
 );
 
 -- Crear tabla publicaciones con clave foránea hacia usuarios
@@ -35,13 +35,8 @@ CREATE TABLE IF NOT EXISTS seguidores (
 -- Crear tabla notificaciones con clave foránea hacia usuarios
 CREATE TABLE IF NOT EXISTS notificaciones (
   id_notificacion INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT,
+  id_usuario INT NOT NULL,
   tipo_notificacion VARCHAR(20),
   fecha_notificacion DATE,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
-
--- Alterar tabla usuarios para añadir la clave foránea hacia publicaciones
-ALTER TABLE usuarios
-ADD CONSTRAINT fk_publicaciones_id
-FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion);
