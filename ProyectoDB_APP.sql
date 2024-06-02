@@ -45,6 +45,4 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 -- Alterar tabla usuarios para añadir la clave foránea hacia publicaciones
 ALTER TABLE usuarios
 ADD CONSTRAINT fk_publicaciones_id
-FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion),
-ADD CONSTRAINT fk_seguidores_id
-FOREIGN KEY (seguidores) REFERENCES seguidores(id_seguidor)
+FOREIGN KEY (publicaciones) REFERENCES publicaciones(id_publicacion);
