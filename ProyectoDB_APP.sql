@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS publicaciones (
   tipo_publicacion VARCHAR(20),
   fecha_publicacion VARCHAR(20),
   interaccion VARCHAR(20),
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- Crear tabla seguidores
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS seguidores (
   id INT PRIMARY KEY AUTO_INCREMENT,
   seguidor_id INT NOT NULL,
   seguido_id INT NOT NULL,
-  FOREIGN KEY (seguidor_id) REFERENCES usuarios(id),
-  FOREIGN KEY (seguido_id) REFERENCES usuarios(id)
+  FOREIGN KEY (seguidor_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  FOREIGN KEY (seguido_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- Crear tabla notificaciones con clave foránea hacia usuarios

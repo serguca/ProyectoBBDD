@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoDBAPP.proyectoDBAPP.Models.Publicacion;
+import com.proyectoDBAPP.proyectoDBAPP.Models.Usuario;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.PublicacionesRepository;
+import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 
 
 @RestController
@@ -22,6 +24,9 @@ import com.proyectoDBAPP.proyectoDBAPP.Repositories.PublicacionesRepository;
 public class PublicacionesController {
     @Autowired
     private PublicacionesRepository publicacionesRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public List<Publicacion> getAllPublicaciones(){
@@ -34,28 +39,28 @@ public class PublicacionesController {
         return publicacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<Publicacion> crearPublicacion(@RequestBody Publicacion publicacion){
-        Publicacion newPublicacion = publicacionesRepository.save(publicacion);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newPublicacion);
-        }
+    @PostMapping("/{id}/crear")
+    public Publicacion createPublicacion(@PathVariable int id, @RequestBody Publicacion publicacion){
+        publicacion.setUsuario(usuarioRepository.findById(id).get());
+        return publicacionesRepository.save(publicacion);
+    }
 
-        @PutMapping("/{id}")
-        public ResponseEntity<Publicacion> modificarPublicacion(@PathVariable int id, @RequestBody Publicacion publicacion){
-        Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
-        if (optionalPublicacion.isPresent()) {
-            Publicacion publicacionActualizada = optionalPublicacion.get();
-            
-            publicacionActualizada.setTipo_Publicacion(publicacion.getTipo_Publicacion());
-            publicacionActualizada.setFecha_Publicacion(publicacion.getFecha_Publicacion());
-            publicacionActualizada.setInteraccion(publicacion.getInteraccion());
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<Publicacion> modificarPublicacion(@PathVariable int id, @RequestBody Publicacion publicacion){
+    Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
+    if (optionalPublicacion.isPresent()) {
+        Publicacion publicacionActualizada = optionalPublicacion.get();
+        
+        publicacionActualizada.setTipo_publicacion(publicacion.getTipo_publicacion());
+        publicacionActualizada.setFecha_publicacion(publicacion.getFecha_publicacion());
+        publicacionActualizada.setInteraccion(publicacion.getInteraccion());
 
-            Publicacion updatedPublicacion = publicacionesRepository.save(publicacionActualizada);
-            return ResponseEntity.ok(updatedPublicacion);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-        }
+        Publicacion updatedPublicacion = publicacionesRepository.save(publicacionActualizada);
+        return ResponseEntity.ok(updatedPublicacion);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+    }
     
     @DeleteMapping("/eliminar/{id}")
     public void deletePublicacion(@PathVariable int id){

@@ -19,7 +19,7 @@ public class Publicacion {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     public Usuario getUsuario() {
@@ -30,11 +30,11 @@ public class Publicacion {
         this.usuario = usuario;
     }
 
-    @Column(nullable = false,length = 20)
-    private String tipo_Publicacion;
+    @Column(length = 20)
+    private String tipo_publicacion;
 
-    @Column(nullable = false,length = 20)
-    private String fecha_Publicacion;
+    @Column(length = 20)
+    private String fecha_publicacion;
 
     @Column(nullable = false,length = 20)
     private String interaccion;
@@ -47,20 +47,20 @@ public class Publicacion {
         this.id = id_publicacion;
     }
 
-    public String getTipo_Publicacion() {
-        return tipo_Publicacion;
+    public String getTipo_publicacion() {
+        return tipo_publicacion;
     }
 
-    public void setTipo_Publicacion(String tipo_Publicacion) {
-        this.tipo_Publicacion = tipo_Publicacion;
+    public void setTipo_publicacion(String tipo_publicacion) {
+        this.tipo_publicacion = tipo_publicacion;
     }
 
-    public String getFecha_Publicacion() {
-        return fecha_Publicacion;
+    public String getFecha_publicacion() {
+        return fecha_publicacion;
     }
 
-    public void setFecha_Publicacion(String fecha_Publicacion) {
-        this.fecha_Publicacion = fecha_Publicacion;
+    public void setFecha_publicacion(String fecha_publicacion) {
+        this.fecha_publicacion = fecha_publicacion;
     }
 
     public String getInteraccion() {

@@ -71,6 +71,7 @@ public class UsuariosController {
     public void deleteUsuario(@PathVariable int id){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
+            /* 
             List<Publicacion> publicaciones = publicacionesRepository.findAll();
             for (Publicacion publicacion : publicaciones) {
                 if (publicacion.getUsuario().getId() == id) {
@@ -83,6 +84,7 @@ public class UsuariosController {
                     seguidoresRepository.delete(seguidor);
                 }
             }
+             */
             usuarioRepository.delete(usuarioOptional.get());
         } else {
             throw new IllegalArgumentException("El usuario con el id: " + id + " no existe");
@@ -93,6 +95,7 @@ public class UsuariosController {
     public void seguirUsuario(@PathVariable int id1, @PathVariable int id2){
         seguidoresRepository.insertSeguidor(id1, id2);
     }
+
 
     /*
     @PutMapping("/{id}/dejarDeSeguir")

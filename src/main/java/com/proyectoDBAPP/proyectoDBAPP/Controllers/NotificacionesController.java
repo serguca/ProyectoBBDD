@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoDBAPP.proyectoDBAPP.Models.Notificacion;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.NotificacionesRepository;
+import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 
 @RestController
 @RequestMapping("/notificaciones")
@@ -24,6 +25,9 @@ public class NotificacionesController {
     @Autowired
     private NotificacionesRepository notificacionesRepository;
     
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping("/prueba")
     public String prueba() {
         return "PRUEBA";
@@ -40,8 +44,9 @@ public class NotificacionesController {
         return notificacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Notificacion createNotificacion(@RequestBody Notificacion notificacion) {
+    @PostMapping("/{id}/crear")
+    public Notificacion createNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion){
+        notificacion.setUsuario(usuarioRepository.findById(id).get());
         return notificacionesRepository.save(notificacion);
     }
 
