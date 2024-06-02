@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 -- Crear tabla publicaciones con clave foránea hacia usuarios
 CREATE TABLE IF NOT EXISTS publicaciones (
   id_publicacion INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT,
+  id_usuario INT NOT NULL,
   tipo_publicacion VARCHAR(20),
   fecha_publicacion VARCHAR(20),
   interaccion VARCHAR(20),
