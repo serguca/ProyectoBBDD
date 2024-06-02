@@ -39,3 +39,5 @@ CREATE TABLE IF NOT EXISTS notificaciones (
   fecha_notificacion DATE,
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
+
+
