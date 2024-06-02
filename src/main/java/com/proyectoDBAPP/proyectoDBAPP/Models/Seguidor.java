@@ -41,5 +41,13 @@ public class Seguidor {
     public void setSeguido(Usuario seguido) {
         this.seguido = seguido;
     }
-    
+
+    public void setSeguidoId(int seguido_id_value) {
+        this.seguido.setId(seguido_id_value);
+    }
+
+    public void setSeguidorId(int seguidor_id_value) {
+        this.seguidor.setId(seguidor_id_value);
+    }
+
 }

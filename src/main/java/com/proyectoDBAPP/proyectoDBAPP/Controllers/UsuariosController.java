@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.proyectoDBAPP.proyectoDBAPP.Models.Usuario;
+import com.proyectoDBAPP.proyectoDBAPP.Repositories.SeguidoresRepository;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 
 @RestController
@@ -19,6 +20,9 @@ import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 public class UsuariosController {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private SeguidoresRepository seguidoresRepository;
 
     @GetMapping
     public List<Usuario> getAllUsuarios(){
@@ -68,10 +72,9 @@ public class UsuariosController {
 
 
     
-    @PutMapping("/{id1}/seguir/{id2}")
+    @PostMapping("/{id1}/seguir/{id2}")
     public void seguirUsuario(@PathVariable int id1, @PathVariable int id2){
-        return seguidoresRepository.seguirUsuario(id1, id2);
-    
+        seguidoresRepository.insertSeguidor(id1, id2);
     }
 
     /*
