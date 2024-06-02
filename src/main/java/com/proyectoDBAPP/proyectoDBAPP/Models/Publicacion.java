@@ -2,53 +2,65 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "publicaciones")
 public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_publicacion;
-    private int id_usuario;
-    private String tipo_Publicacion;
-    private String fecha_Publicacion;
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @Column(length = 20)
+    private String tipo_publicacion;
+
+    @Column(length = 20)
+    private String fecha_publicacion;
+
+    @Column(nullable = false,length = 20)
     private String interaccion;
 
-    public int getId_publicacion() {
-        return id_publicacion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_publicacion(int id_publicacion) {
-        this.id_publicacion = id_publicacion;
+    public void setId(int id_publicacion) {
+        this.id = id_publicacion;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public String getTipo_publicacion() {
+        return tipo_publicacion;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setTipo_publicacion(String tipo_publicacion) {
+        this.tipo_publicacion = tipo_publicacion;
     }
 
-    public String getTipo_Publicacion() {
-        return tipo_Publicacion;
+    public String getFecha_publicacion() {
+        return fecha_publicacion;
     }
 
-    public void setTipo_Publicacion(String tipo_Publicacion) {
-        this.tipo_Publicacion = tipo_Publicacion;
-    }
-
-    public String getFecha_Publicacion() {
-        return fecha_Publicacion;
-    }
-
-    public void setFecha_Publicacion(String fecha_Publicacion) {
-        this.fecha_Publicacion = fecha_Publicacion;
+    public void setFecha_publicacion(String fecha_publicacion) {
+        this.fecha_publicacion = fecha_publicacion;
     }
 
     public String getInteraccion() {

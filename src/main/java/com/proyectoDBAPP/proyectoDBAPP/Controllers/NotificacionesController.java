@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoDBAPP.proyectoDBAPP.Models.Notificacion;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.NotificacionesRepository;
+import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 
 @RestController
 @RequestMapping("/notificaciones")
@@ -24,6 +25,9 @@ public class NotificacionesController {
     @Autowired
     private NotificacionesRepository notificacionesRepository;
     
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping("/prueba")
     public String prueba() {
         return "PRUEBA";
@@ -40,34 +44,10 @@ public class NotificacionesController {
         return notificacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Notificacion createNotificacion(@RequestBody Notificacion notificacion) {
+    @PostMapping("/{id}/crear")
+    public Notificacion createNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion){
+        notificacion.setUsuario(usuarioRepository.findById(id).get());
         return notificacionesRepository.save(notificacion);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Notificacion> modificarNotificacion(@PathVariable int id, @RequestBody Notificacion notificacion) {
-        Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
-        if (optionalNotificacion.isPresent()) {
-            Notificacion notificacionModificada = optionalNotificacion.get();
-            notificacionModificada.setTipo_notificacion(notificacion.getTipo_notificacion());
-            notificacionModificada.setFecha_notificacion(notificacion.getFecha_notificacion());
-
-            Notificacion updatedNotificacion = notificacionesRepository.save(notificacionModificada);
-            return ResponseEntity.ok(updatedNotificacion);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNotificacion(@PathVariable int id) {
-        Optional<Notificacion> optionalNotificacion = notificacionesRepository.findById(id);
-        if (optionalNotificacion.isPresent()) {
-            notificacionesRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }

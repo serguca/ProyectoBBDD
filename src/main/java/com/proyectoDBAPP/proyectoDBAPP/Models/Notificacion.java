@@ -1,44 +1,63 @@
 package com.proyectoDBAPP.proyectoDBAPP.Models;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "notificaciones")
 public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    private int id_notificacion;
-    private int id_usuario;
-    private String tipo_notificacion;
+    private int id;
+
+    @Column(name = "fecha_notificacion")
     private String fecha_notificacion;
     
-    public int getId_notificacion() {
-        return id_notificacion;
-    }
-    public void setId_notificacion(int id_notificacion) {
-        this.id_notificacion = id_notificacion;
-    }
-    public int getId_usuario() {
-        return id_usuario;
-    }
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @Column(name = "tipo_notificacion")
+    private String tipo_notificacion;
+    
+
     public String getTipo_notificacion() {
         return tipo_notificacion;
     }
     public void setTipo_notificacion(String tipo_notificacion) {
         this.tipo_notificacion = tipo_notificacion;
     }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id_notificacion) {
+        this.id = id_notificacion;
+    }
+
     public String getFecha_notificacion() {
         return fecha_notificacion;
     }
     public void setFecha_notificacion(String fecha_notificacion) {
         this.fecha_notificacion = fecha_notificacion;
     }
+
+    @Override public String toString() { 
+        return "Notificacion [id_notificacion=" + id + 
+        ", fecha_notificacion=" + fecha_notificacion + "]"; 
+    }
+
 }
