@@ -10,8 +10,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
   contrasenia VARCHAR(30),
   telefono VARCHAR(30),
   imagen VARCHAR(40),
-  publicaciones INT,
-  seguidores INT
 );
 
 -- Crear tabla publicaciones con clave foránea hacia usuarios
@@ -27,10 +25,11 @@ CREATE TABLE IF NOT EXISTS publicaciones (
 -- Crear tabla seguidores
 -- Usamos dos claves foráneas hacia la tabla usuarios para representar la relación muchos a muchos
 CREATE TABLE IF NOT EXISTS seguidores (
-  id_usuario INT,
-  id_seguidor INT,
-  PRIMARY KEY (id_usuario, id_seguidor),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  seguidor_id INT NOT NULL,
+  seguido_id INT NOT NULL,
+  FOREIGN KEY (seguidor_id) REFERENCES usuarios(id_usuario),
+  FOREIGN KEY (seguido_id) REFERENCES usuarios(id_usuario)
 );
 
 -- Crear tabla notificaciones con clave foránea hacia usuarios
