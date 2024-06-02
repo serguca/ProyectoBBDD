@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToOne;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_usuario;
+    private int id;
 
     @Column(nullable = false,length = 50)
     private String nombre;
@@ -36,10 +36,10 @@ public class Usuario {
     private String imagen;
 
     public int getId_usuario() {
-        return id_usuario;
+        return id;
     }
     public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+        this.id = id_usuario;
     }
     public String getNombre() {
         return nombre;
@@ -100,7 +100,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "id_usuario=" + id_usuario +
+                "id_usuario=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
                 ", correo='" + correo + '\'' +

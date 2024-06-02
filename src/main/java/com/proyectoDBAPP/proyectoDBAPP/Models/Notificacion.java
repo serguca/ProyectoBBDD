@@ -16,7 +16,7 @@ import jakarta.persistence.ManyToOne;
 public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_notificacion;
+    private int id;
 
     @Column(name = "fecha_notificacion", nullable = false, updatable = false)
     private String fecha_notificacion;
@@ -25,11 +25,11 @@ public class Notificacion {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    public int getId_notificacion() {
-        return id_notificacion;
+    public int getId() {
+        return id;
     }
-    public void setId_notificacion(int id_notificacion) {
-        this.id_notificacion = id_notificacion;
+    public void setId(int id_notificacion) {
+        this.id = id_notificacion;
     }
 
     public String getFecha_notificacion() {
@@ -40,7 +40,7 @@ public class Notificacion {
     }
 
     @Override public String toString() { 
-        return "Notificacion [id_notificacion=" + id_notificacion + 
+        return "Notificacion [id_notificacion=" + id + 
         ", fecha_notificacion=" + fecha_notificacion + "]"; 
     }
 
