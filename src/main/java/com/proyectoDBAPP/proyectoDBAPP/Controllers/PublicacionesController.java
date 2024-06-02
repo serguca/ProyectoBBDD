@@ -17,34 +17,32 @@ import com.proyectoDBAPP.proyectoDBAPP.Models.Publicacion;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.PublicacionesRepository;
 
 
-
-
 @RestController
 @RequestMapping("/publicaciones")
 public class PublicacionesController {
     @Autowired
-    private PublicacionesRepository publicacionRepository;
+    private PublicacionesRepository publicacionesRepository;
 
     @GetMapping
     public List<Publicacion> getAllPublicaciones(){
-        return publicacionRepository.findAll();
+        return publicacionesRepository.findAll();
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<Publicacion> getPublicacionById(@PathVariable Integer id){
-        Optional<Publicacion> publicacion = publicacionRepository.findById(id);
+        Optional<Publicacion> publicacion = publicacionesRepository.findById(id);
         return publicacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Publicacion> crearPublicacion(@RequestBody Publicacion publicacion){
-        Publicacion newPublicacion = publicacionRepository.save(publicacion);
+        Publicacion newPublicacion = publicacionesRepository.save(publicacion);
         return ResponseEntity.status(HttpStatus.CREATED).body(newPublicacion);
         }
 
         @PutMapping("/{id}")
         public ResponseEntity<Publicacion> modificarPublicacion(@PathVariable int id, @RequestBody Publicacion publicacion){
-        Optional<Publicacion> optionalPublicacion = publicacionRepository.findById(id);
+        Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
         if (optionalPublicacion.isPresent()) {
             Publicacion publicacionActualizada = optionalPublicacion.get();
             
@@ -52,7 +50,7 @@ public class PublicacionesController {
             publicacionActualizada.setFecha_Publicacion(publicacion.getFecha_Publicacion());
             publicacionActualizada.setInteraccion(publicacion.getInteraccion());
 
-            Publicacion updatedPublicacion = publicacionRepository.save(publicacionActualizada);
+            Publicacion updatedPublicacion = publicacionesRepository.save(publicacionActualizada);
             return ResponseEntity.ok(updatedPublicacion);
         } else {
             return ResponseEntity.notFound().build();
@@ -61,13 +59,14 @@ public class PublicacionesController {
     
     @DeleteMapping("/eliminar/{id}")
     public void deletePublicacion(@PathVariable int id){
-        Optional<Publicacion> optionalPublicacion = publicacionRepository.findById(id);
+        Optional<Publicacion> optionalPublicacion = publicacionesRepository.findById(id);
         if(optionalPublicacion.isPresent()){
-            publicacionRepository.delete(optionalPublicacion.get());
+            publicacionesRepository.delete(optionalPublicacion.get());
         } else {
             throw new IllegalArgumentException("La publicacion con el id: " + id + " no existe");
         }
     }
+
     }
 
 

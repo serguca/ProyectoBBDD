@@ -1,4 +1,5 @@
 package com.proyectoDBAPP.proyectoDBAPP.Controllers;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.proyectoDBAPP.proyectoDBAPP.Models.Publicacion;
+import com.proyectoDBAPP.proyectoDBAPP.Models.Seguidor;
 import com.proyectoDBAPP.proyectoDBAPP.Models.Usuario;
+import com.proyectoDBAPP.proyectoDBAPP.Repositories.PublicacionesRepository;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.SeguidoresRepository;
 import com.proyectoDBAPP.proyectoDBAPP.Repositories.UsuarioRepository;
 
@@ -23,6 +28,9 @@ public class UsuariosController {
 
     @Autowired
     private SeguidoresRepository seguidoresRepository;
+
+    @Autowired
+    private PublicacionesRepository publicacionesRepository;
 
     @GetMapping
     public List<Usuario> getAllUsuarios(){
@@ -63,6 +71,18 @@ public class UsuariosController {
     public void deleteUsuario(@PathVariable int id){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
+            List<Publicacion> publicaciones = publicacionesRepository.findAll();
+            for (Publicacion publicacion : publicaciones) {
+                if (publicacion.getUsuario().getId() == id) {
+                    publicacionesRepository.delete(publicacion);
+                }
+            }
+            List<Seguidor> seguidores = seguidoresRepository.findAll();
+            for (Seguidor seguidor : seguidores) {
+                if (seguidor.getSeguidor().getId() == id || seguidor.getSeguido().getId() == id) {
+                    seguidoresRepository.delete(seguidor);
+                }
+            }
             usuarioRepository.delete(usuarioOptional.get());
         } else {
             throw new IllegalArgumentException("El usuario con el id: " + id + " no existe");
