@@ -22,6 +22,14 @@ public class Publicacion {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Column(nullable = false,length = 20)
     private String tipo_Publicacion;
 
