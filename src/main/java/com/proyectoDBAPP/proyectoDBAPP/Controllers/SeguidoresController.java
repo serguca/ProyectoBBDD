@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +19,10 @@ public class SeguidoresController {
     @GetMapping
     public List<Seguidor> getAllSeguidores() {
         return seguidoresRepository.findAll();
+    }
+
+    @GetMapping("/{id_seguido}")
+    public List<Seguidor> getSeguidoresBySeguidoId(@PathVariable int id_seguido) {
+        return seguidoresRepository.findBySeguidoId(id_seguido);
     }
 }
