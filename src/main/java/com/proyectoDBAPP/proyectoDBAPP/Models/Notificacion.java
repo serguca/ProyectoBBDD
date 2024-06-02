@@ -12,7 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@Table(name = "notifications")
+@Table(name = "notificaciones")
 public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

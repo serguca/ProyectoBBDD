@@ -8,7 +8,7 @@ public class Seguidor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "seguidor_id", nullable = false)
@@ -18,11 +18,11 @@ public class Seguidor {
     @JoinColumn(name = "seguido_id", nullable = false)
     private Usuario seguido;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
