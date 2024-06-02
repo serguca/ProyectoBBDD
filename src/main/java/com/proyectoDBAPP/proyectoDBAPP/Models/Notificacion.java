@@ -38,4 +38,10 @@ public class Notificacion {
     public void setFecha_notificacion(String fecha_notificacion) {
         this.fecha_notificacion = fecha_notificacion;
     }
+
+    @Override public String toString() { 
+        return "Notificacion [id_notificacion=" + id_notificacion + 
+        ", fecha_notificacion=" + fecha_notificacion + "]"; 
+    }
+
 }

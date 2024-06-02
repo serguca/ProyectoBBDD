@@ -3,7 +3,7 @@ USE proyectoDB;
 
 -- Crear tabla usuarios sin la clave foránea problematica
 CREATE TABLE IF NOT EXISTS usuarios (
-  id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(30),
   apellido VARCHAR(30),
   correo VARCHAR(30),
@@ -14,12 +14,12 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 -- Crear tabla publicaciones con clave foránea hacia usuarios
 CREATE TABLE IF NOT EXISTS publicaciones (
-  id_publicacion INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_id INT,
   tipo_publicacion VARCHAR(20),
   fecha_publicacion VARCHAR(20),
   interaccion VARCHAR(20),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
 -- Crear tabla seguidores
@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS seguidores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   seguidor_id INT NOT NULL,
   seguido_id INT NOT NULL,
-  FOREIGN KEY (seguidor_id) REFERENCES usuarios(id_usuario),
-  FOREIGN KEY (seguido_id) REFERENCES usuarios(id_usuario)
+  FOREIGN KEY (seguidor_id) REFERENCES usuarios(id),
+  FOREIGN KEY (seguido_id) REFERENCES usuarios(id)
 );
 
 -- Crear tabla notificaciones con clave foránea hacia usuarios
 CREATE TABLE IF NOT EXISTS notificaciones (
-  id_notificacion INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT NOT NULL,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_id INT NOT NULL,
   fecha_notificacion DATE,
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
