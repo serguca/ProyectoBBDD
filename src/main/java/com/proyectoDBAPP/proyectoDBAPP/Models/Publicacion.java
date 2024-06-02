@@ -16,7 +16,7 @@ import jakarta.persistence.ManyToOne;
 public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_publicacion;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -31,12 +31,12 @@ public class Publicacion {
     @Column(nullable = false,length = 20)
     private String interaccion;
 
-    public int getId_publicacion() {
-        return id_publicacion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_publicacion(int id_publicacion) {
-        this.id_publicacion = id_publicacion;
+    public void setId(int id_publicacion) {
+        this.id = id_publicacion;
     }
 
     public String getTipo_Publicacion() {
