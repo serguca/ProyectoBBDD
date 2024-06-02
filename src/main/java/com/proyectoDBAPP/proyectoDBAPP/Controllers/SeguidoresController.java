@@ -17,6 +17,6 @@ public class SeguidoresController {
     
     @GetMapping
     public List<Seguidor> getAllSeguidores() {
-        return seguidoresRepository.encontrarTodos();
+        return seguidoresRepository.findAll();
     }
 }
