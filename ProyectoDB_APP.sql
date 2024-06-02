@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS notificaciones (
   usuario_id INT NOT NULL,
   fecha_notificacion DATE,
   tipo_notificacion VARCHAR(30),
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 

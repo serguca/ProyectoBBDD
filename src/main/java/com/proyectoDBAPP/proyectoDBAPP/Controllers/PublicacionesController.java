@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +30,10 @@ public class PublicacionesController {
         return publicacionRepository.findAll();
     }
     
-    @GetMapping("/{id}")    //Este id es el que recive el metodo
-    public ResponseEntity<Publicacion> getPublicacionById(@PathVariable int id){ // Queremos que sea igual a este id para que se pueda hacer la busqueda
-      Optional <Publicacion> publicacion = publicacionRepository.findById(id);//@PathVariable INDICA QUE  EL ID DE ARRIBA ES EL MISMO QUE EL DE ABAJO Y ENTRA POR LA RUTA
-        return publicacion.map(ResponseEntity :: ok).orElseGet(() -> ResponseEntity.notFound().build()); //SI PUEDE DEVOLVER EL ID DEL USUARIO EL RESPONSE ENTITY ES OK SINO NOS DARÁ UN NOT FOUND
+    @GetMapping("/{id}")
+    public ResponseEntity<Publicacion> getPublicacionById(@PathVariable Integer id){
+        Optional<Publicacion> publicacion = publicacionRepository.findById(id);
+        return publicacion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -57,15 +58,16 @@ public class PublicacionesController {
             return ResponseEntity.notFound().build();
         }
         }
-       
-        public void deletePublicacion(int id){
-            Optional<Publicacion> optionalPublicacion = publicacionRepository.findById(id);
-            if(optionalPublicacion.isPresent()){
-                publicacionRepository.delete(optionalPublicacion.get());
-            } else {
-                throw new IllegalArgumentException("La publicacion con el id: " + id + " no existe");
-            }
+    
+    @DeleteMapping("/eliminar/{id}")
+    public void deletePublicacion(@PathVariable int id){
+        Optional<Publicacion> optionalPublicacion = publicacionRepository.findById(id);
+        if(optionalPublicacion.isPresent()){
+            publicacionRepository.delete(optionalPublicacion.get());
+        } else {
+            throw new IllegalArgumentException("La publicacion con el id: " + id + " no existe");
         }
+    }
     }
 
 

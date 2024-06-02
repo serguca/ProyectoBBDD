@@ -59,7 +59,7 @@ public class UsuariosController {
     }
 
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public void deleteUsuario(@PathVariable int id){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
@@ -68,9 +68,6 @@ public class UsuariosController {
             throw new IllegalArgumentException("El usuario con el id: " + id + " no existe");
         }
     }
-    
-
-
     
     @PostMapping("/{id1}/seguir/{id2}")
     public void seguirUsuario(@PathVariable int id1, @PathVariable int id2){
