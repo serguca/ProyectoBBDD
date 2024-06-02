@@ -41,5 +41,5 @@ public class Seguidor {
     public void setSeguido(Usuario seguido) {
         this.seguido = seguido;
     }
-
+    
 }
