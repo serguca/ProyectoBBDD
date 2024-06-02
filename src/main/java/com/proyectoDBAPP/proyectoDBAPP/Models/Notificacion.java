@@ -18,13 +18,29 @@ public class Notificacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "fecha_notificacion", nullable = false, updatable = false)
+    @Column(name = "fecha_notificacion")
     private String fecha_notificacion;
     
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    @Column(name = "tipo_notificacion")
+    private String tipo_notificacion;
+    
+
+    public String getTipo_notificacion() {
+        return tipo_notificacion;
+    }
+    public void setTipo_notificacion(String tipo_notificacion) {
+        this.tipo_notificacion = tipo_notificacion;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     public int getId() {
         return id;
     }

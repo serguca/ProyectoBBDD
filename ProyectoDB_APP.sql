@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS publicaciones (
 -- Crear tabla seguidores
 -- Usamos dos claves foráneas hacia la tabla usuarios para representar la relación muchos a muchos
 CREATE TABLE IF NOT EXISTS seguidores (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   seguidor_id INT NOT NULL,
   seguido_id INT NOT NULL,
   FOREIGN KEY (seguidor_id) REFERENCES usuarios(id),
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS notificaciones (
   id INT PRIMARY KEY AUTO_INCREMENT,
   usuario_id INT NOT NULL,
   fecha_notificacion DATE,
+  tipo_notificacion VARCHAR(30),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 

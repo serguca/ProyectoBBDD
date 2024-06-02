@@ -25,9 +25,9 @@ VALUES
   (4, 1);
 
 -- Insertar datos en la tabla notificaciones
-INSERT INTO notificaciones (usuario_id, fecha_notificacion)
+INSERT INTO notificaciones (usuario_id, fecha_notificacion, tipo_notificacion)
 VALUES 
-  (1, '2024-06-02'),
-  (2, '2024-06-01'),
-  (3, '2024-05-31'),
-  (4, '2024-05-30');
+  (1, '2024-06-02', "push"),
+  (2, '2024-06-01', "a"),
+  (3, '2024-05-31',"b"),
+  (4, '2024-05-30',"c");
