@@ -3,7 +3,7 @@ USE proyectoDB;
 
 -- Crear tabla usuarios sin la clave foránea problematica
 CREATE TABLE IF NOT EXISTS usuarios (
-  id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+  id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(30),
   apellido VARCHAR(30),
   correo VARCHAR(30),

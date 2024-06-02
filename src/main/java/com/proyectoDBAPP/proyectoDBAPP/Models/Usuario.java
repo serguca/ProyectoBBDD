@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +24,10 @@ public class Usuario {
     private ArrayList<Publicacion> publicaciones;
     private ArrayList<Usuario> seguidores;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     public int getId_usuario() {
         return id_usuario;
     }
