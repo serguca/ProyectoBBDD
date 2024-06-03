@@ -1,0 +1,16 @@
+
+{
+    "usuario_id": 1,
+    "fecha_notificacion": "2024-06-03",
+    "tipo_notificacion": "Nueva actualizacion disponible"
+  },
+  {
+    "usuario_id": 2,
+    "fecha_notificacion": "2024-06-02",
+    "tipo_notificacion": "Comentario en tu publicacion"
+  },
+  {
+    "usuario_id": 3,
+    "fecha_notificacion": "2024-05-30",
+    "tipo_notificacion": "Mensaje directo recibido"
+  }
