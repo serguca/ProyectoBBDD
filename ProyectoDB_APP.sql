@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS publicaciones (
   usuario_id INT NOT NULL,
   tipo_publicacion VARCHAR(20),
   fecha_publicacion VARCHAR(20),
-  interaccion VARCHAR(20),
+  contenido VARCHAR(20),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 

@@ -37,7 +37,7 @@ public class Publicacion {
     private String fecha_publicacion;
 
     @Column(nullable = false,length = 20)
-    private String interaccion;
+    private String contenido;
 
     public int getId() {
         return id;
@@ -63,11 +63,11 @@ public class Publicacion {
         this.fecha_publicacion = fecha_publicacion;
     }
 
-    public String getInteraccion() {
-        return interaccion;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setInteraccion(String interaccion) {
-        this.interaccion = interaccion;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 }

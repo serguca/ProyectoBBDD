@@ -9,12 +9,12 @@ VALUES
   ('Laura', 'Lopez', 'laura@example.com', 'contrasenia4', '789456123', 'imagen4.jpg');
 
 -- Insertar datos en la tabla publicaciones
-INSERT INTO publicaciones (usuario_id, tipo_publicacion, fecha_publicacion, interaccion)
+INSERT INTO publicaciones (usuario_id, tipo_publicacion, fecha_publicacion, contenido)
 VALUES 
-  (1, 'foto', '2024-06-01', 'like'),
-  (2, 'video', '2024-05-30', 'comment'),
-  (3, 'texto', '2024-05-28', 'share'),
-  (4, 'foto', '2024-05-26', 'like');
+  (1, 'foto', '2024-06-01', 'Hola a todos!'),
+  (2, 'video', '2024-05-30', 'Nuevo video en mi canal!'),
+  (3, 'texto', '2024-05-28', 'Este es un post de prueba'),
+  (4, 'foto', '2024-05-26', 'Una foto bonita');
 
 -- Insertar datos en la tabla seguidores
 INSERT INTO seguidores (seguidor_id, seguido_id)
