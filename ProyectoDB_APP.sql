@@ -1,3 +1,4 @@
+drop database proyectoDB;
 CREATE DATABASE proyectoDB;
 USE proyectoDB;
 
@@ -15,10 +16,10 @@ CREATE TABLE IF NOT EXISTS usuarios (
 -- Crear tabla publicaciones con clave foránea hacia usuarios
 CREATE TABLE IF NOT EXISTS publicaciones (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  usuario_id INT,
+  usuario_id INT NOT NULL,
   tipo_publicacion VARCHAR(20),
   fecha_publicacion VARCHAR(20),
-  interaccion VARCHAR(20),
+  contenido VARCHAR(20),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
