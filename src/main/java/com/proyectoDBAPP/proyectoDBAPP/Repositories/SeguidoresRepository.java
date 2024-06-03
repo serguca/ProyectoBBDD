@@ -14,9 +14,11 @@ public interface SeguidoresRepository extends JpaRepository<Seguidor, Integer> {
     //public void insertSeguidor(@Param("seguidor_id_value") int seguidor_id_value, @Param("seguido_id_value") int seguido_id_value);
     default void insertSeguidor(int seguidor_id_value, int seguido_id_value) {
         Seguidor seguidor = new Seguidor();
+        
         Usuario seguidorUser = new Usuario();
         seguidor.setSeguidor(seguidorUser);
         seguidor.setSeguidorId(seguidor_id_value);
+        
         Usuario seguidoUser = new Usuario();
         seguidor.setSeguido(seguidoUser);
         seguidor.setSeguidoId(seguido_id_value);
